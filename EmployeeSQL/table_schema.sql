@@ -51,7 +51,8 @@ DROP TABLE IF EXISTS titles;
 create table titles(
     title_id VARCHAR,
     title VARCHAR(25),
-    PRIMARY KEY (title_id));
+    PRIMARY KEY (title_id)
+);
 
 -- View the titles table structure without the data
 SELECT *
@@ -97,10 +98,29 @@ create table dept_manager(
 
 -- View the dept_managers table structure without the data
 SELECT *
-FROM dept_managers;
+FROM dept_manager;
 
 -- Insert data into the dept_managers table 
 
 -- View the dept_managers table
 SELECT *
-FROM dept_managers;
+FROM dept_manager;
+
+-- Drop salaries table if exists
+DROP TABLE IF EXISTS salaries;
+
+CREATE TABLE salaries(
+	emp_no INT PRIMARY KEY NOT NULL,
+	FOREIGN KEY (emp_no, emp_title_id) REFERENCES employees(emp_no, emp_title_id),
+	salary INT
+);
+
+-- View the salaries table structure without the data
+SELECT *
+FROM salaries;
+
+-- Insert data into the salaries table 
+
+-- View the salaries table
+SELECT *
+FROM salaries;
