@@ -1,0 +1,3 @@
+# Postgres password
+
+password = "postgres"
