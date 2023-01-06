@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS departments;
 
 -- Create new departments table
 CREATE TABLE departments (
-    dept_no VARCHAR(100)   NOT NULL,
-    dept_name VARCHAR(100)   NOT NULL,
+    dept_no VARCHAR(10)  NOT NULL,
+    dept_name VARCHAR(50)  NOT NULL,
     PRIMARY KEY (dept_no)
 );
 -- View the departments table structure without the data
@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS employees;
 -- Create new employees table
 
 CREATE TABLE employees(
-    emp_no INT,
-    emp_title_id VARCHAR(10),
-    birth_date DATE,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    sex VARCHAR(1),
-    hire_date DATE,
+    emp_no INT NOT NULL,
+    emp_title_id VARCHAR(10) NOT NULL,
+    birth_date VARCHAR NOT NULL,
+    first_name VARCHAR(20) NOT NULL,
+    last_name VARCHAR(20) NOT NULL,
+    sex VARCHAR(1) NOT NULL,
+    hire_date VARCHAR NOT NULL,
     PRIMARY KEY (emp_no),
     FOREIGN KEY (emp_title_id) REFERENCES titles(title_id)
 );
@@ -48,9 +48,9 @@ FROM employees;
 DROP TABLE IF EXISTS titles;
 
 -- Create new titles table
-create table titles(
-    title_id VARCHAR,
-    title VARCHAR(25),
+CREATE TABLE titles(
+    title_id VARCHAR NOT NULL,
+    title VARCHAR(25) NOT NULL,
     PRIMARY KEY (title_id)
 );
 
@@ -68,11 +68,10 @@ FROM titles;
 DROP TABLE IF EXISTS dept_emp;
 
 create table dept_emp(
-    emp_no INT,
-    dept_no VARCHAR(10),
-	primary key (dept_no,emp_no),
-	FOREIGN KEY (dept_no) REFERENCES departments(dept_no),
-    FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
+    emp_no INT NOT NULL,
+    dept_no VARCHAR(10) NOT NULL,
+	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
+    FOREIGN KEY (dept_no) REFERENCES departments(dept_no)
 );
 
 -- View the dept_emp table structure without the data
@@ -88,12 +87,11 @@ FROM dept_emp;
 -- Drop dept_managers table if exists
 DROP TABLE IF EXISTS dept_managers;
 
-create table dept_manager(
+CREATE TABLE dept_manager(
     dept_no VARCHAR(10),
     emp_no INT,
-	primary key (dept_no,emp_no),
-     FOREIGN KEY (dept_no) REFERENCES departments(dept_no),
-	 FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
+	FOREIGN KEY (dept_no) REFERENCES departments(dept_no),
+ 	FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
 );
 
 -- View the dept_managers table structure without the data
@@ -110,10 +108,11 @@ FROM dept_manager;
 DROP TABLE IF EXISTS salaries;
 
 CREATE TABLE salaries(
-	emp_no INT PRIMARY KEY NOT NULL,
-	FOREIGN KEY (emp_no, emp_title_id) REFERENCES employees(emp_no, emp_title_id),
-	salary INT
+    emp_no  INT NOT NULL,
+    salary  BIGINT NOT NULL,
+    FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
 );
+ 
 
 -- View the salaries table structure without the data
 SELECT *
